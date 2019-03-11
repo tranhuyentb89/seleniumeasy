@@ -13,40 +13,46 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 
 public class JQuerySelect {
 	WebDriver driver;
 	JavascriptExecutor javascript;
-//  @Test
-//  public void TC_01_DropdownWithSearchBox() throws Exception {
-//	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-//	  DropdownWithSearchBox("//span[@class='select2-selection select2-selection--single']","//span[@class='select2-search select2-search--dropdown']/input", "//ul[@id='select2-country-results']/li", "Bangladesh");
-//	  
-//	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-//	  DropdownWithSearchBox("//span[@class='select2-selection select2-selection--single']","//span[@class='select2-search select2-search--dropdown']/input", "//ul[@id='select2-country-results']/li", "Netherlands");
-//
-//	  Thread.sleep(3000);
-//  }
-//  @Test
-//  public void TC_02_DropdownWithoutSearchBox() throws Exception
-//  {
-//	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-//	  DropdownWithOutSearchBox("//span[@class='select2-selection select2-selection--single']","//ul[@id='select2-country-results']/li", "Bangladesh");
-//	  
-//	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-//	  DropdownWithOutSearchBox("//span[@class='select2-selection select2-selection--single']","//ul[@id='select2-country-results']/li", "Netherlands");
-//
-//	  Thread.sleep(3000);
-//
-//  }
-  @Test
+  //@Test
+  public void TC_01_DropdownWithSearchBox() throws Exception {
+	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+	  DropdownWithSearchBox("//span[@class='select2-selection select2-selection--single']","//span[@class='select2-search select2-search--dropdown']/input", "//ul[@id='select2-country-results']/li", "Bangladesh");
+	  
+	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+	  DropdownWithSearchBox("//span[@class='select2-selection select2-selection--single']","//span[@class='select2-search select2-search--dropdown']/input", "//ul[@id='select2-country-results']/li", "Netherlands");
+
+	  Thread.sleep(3000);
+  }
+  //@Test
+  public void TC_02_DropdownWithoutSearchBox() throws Exception
+  {
+	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+	  DropdownWithOutSearchBox("//span[@class='select2-selection select2-selection--single']","//ul[@id='select2-country-results']/li", "Bangladesh");
+	  
+	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+	  DropdownWithOutSearchBox("//span[@class='select2-selection select2-selection--single']","//ul[@id='select2-country-results']/li", "Netherlands");
+
+	  Thread.sleep(3000);
+
+  }
+@Test
   public void TC_03_SelectMultiValue() throws Exception
   {
 	  driver.get("https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-	  SelectMultiValue("//ul[@class='select2-selection__rendered']","//li[contains(@id,'select2-c51j-result')]","Alabama");
+	  SelectMultiValue("//span[@class='select2-selection select2-selection--multiple']", "//li[contains(@class,'select2-results__option')]", "Rhode Island");
 	  Thread.sleep(3000);
+	  SelectMultiValue("//span[@class='select2-selection select2-selection--multiple']", "//li[contains(@class,'select2-results__option')]", "Alaska");
+	  Thread.sleep(3000);
+	  removeSelectedItem("//li[@title='Alaska']");
+	  Thread.sleep(3000);
+
   }
   @BeforeTest
   public void beforeTest() {
@@ -103,26 +109,30 @@ public class JQuerySelect {
 		  }
 	  }
   }
+  
   public void SelectMultiValue(String parentXpath, String childXpath, String valueExpected) throws Exception {
 	  WebElement parent = driver.findElement(By.xpath(parentXpath));
-	  javascript.executeScript("arguments[0].click()", parent);
-	  //parent.click();
-	  Thread.sleep(3000);
-	  //wait cho tat ca cac item duoc hien thi
+	  parent.click();
 	  List<WebElement> child = driver.findElements(By.xpath(childXpath));
-	  WebDriverWait wait = new WebDriverWait(driver, 30);
-	  wait.until(ExpectedConditions.visibilityOfAllElements(child));
 	  for(WebElement chilItem: child)
 	  {
 		  if(chilItem.getText().equals(valueExpected))
 		  {
-			  javascript.executeScript("arguments[0].scrollIntoView(true);", chilItem);
-			  javascript.executeScript("arguments[0].click()", chilItem);
-			  Thread.sleep(3000);
+			  chilItem.click();
 			  break;
 		  }
 	  }
 
+  }
+  public void removeSelectedItem(String childXpath) {
+	  List<WebElement> items = driver.findElements(By.xpath(childXpath));
+	  for(WebElement remove:items)
+	  {
+		  
+			  remove.click();
+			  break;
+		  
+	  }
   }
 
 }
