@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="16269" started-at="2019-03-11T09:12:39Z" finished-at="2019-03-11T09:12:55Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="16269" started-at="2019-03-11T09:12:39Z" finished-at="2019-03-11T09:12:55Z">
+      <class name="InputForm.JQuerySelect">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:InputForm.JQuerySelect@1c53fd30]" name="beforeTest" is-config="true" duration-ms="2846" started-at="2019-03-11T16:12:39Z" finished-at="2019-03-11T16:12:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="TC_03_SelectMultiValue()[pri:0, instance:InputForm.JQuerySelect@1c53fd30]" name="TC_03_SelectMultiValue" duration-ms="12394" started-at="2019-03-11T16:12:42Z" finished-at="2019-03-11T16:12:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_03_SelectMultiValue -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:InputForm.JQuerySelect@1c53fd30]" name="afterTest" is-config="true" duration-ms="1015" started-at="2019-03-11T16:12:54Z" finished-at="2019-03-11T16:12:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- InputForm.JQuerySelect -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
